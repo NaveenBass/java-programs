@@ -1,4 +1,4 @@
-
+package naveen;
 interface Star1{
 	int a=10,b=20,c=a+b;
 	void company1();

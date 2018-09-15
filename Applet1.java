@@ -1,3 +1,4 @@
+package naveen;
 //<applet code="Applet1.class" width="400" height="600"></applet>
 
 import java.applet.*;

@@ -1,0 +1,138 @@
+package naveen;
+//<applet code="AppletKey2.class" width="800" height="800"></applet>
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.Image.*;
+
+public class AppletKey2 extends Applet implements ActionListener,ItemListener,KeyListener
+{
+	Label l1,l2,l3,l4,l5;
+	TextField t1,t2,t3;
+	Button b1,b2;
+	Checkbox c1,c2,c3;
+	List ls1;
+	String s1="",s2="",s3="",s4="",s5="",s6="";
+	Image img;
+	File fm;
+	public void init() 
+	{
+	setLayout(null);
+	fm=new File("123.jpg");
+	try{
+	img=ImageIO.read(fm);
+}
+	catch(Exception e){}
+	l1=new Label("Contact Details");
+	l2=new Label("Enter Your Name");
+	l3=new Label("Enter Your Password");
+	l4=new Label("Enter Your Age");
+	l5=new Label("Select Your Course");
+	t1=new TextField(22);
+	t2=new TextField(22);
+	t2.setEchoChar('#');
+	t3=new TextField(22);
+	t3.setColumns(2);
+	c1=new Checkbox("C");
+	c2=new Checkbox("C++");
+	c3=new Checkbox("None");
+	b1=new Button("Sumit");
+	b2=new Button("Clear");
+	ls1=new List(22);
+	l1.setBounds(100,50,100,50);
+	l2.setBounds(100,100,100,40);
+	t1.setBounds(250,100,100,30);
+	l3.setBounds(100,150,150,30);
+	t2.setBounds(250,150,100,30);
+	l4.setBounds(100,200,100,30);
+	t3.setBounds(250,200,100,30);
+	l5.setBounds(100,250,150,30);
+	c1.setBounds(250,250,50,40);
+	c2.setBounds(300,250,100,40);
+	c3.setBounds(400,250,100,40);
+	b1.setBounds(200,300,50,40); 
+	b2.setBounds(300,300,50,40);
+	ls1.setBounds(100,350,100,100);
+	setBackground(Color.GREEN);
+	add(l1);add(l2);add(l3);add(l4);add(l5);add(t3);add(c1);add(c2);
+	add(c3);add(ls1);add(b1);add(b2);
+	add(t1);add(t2);
+	t1.addKeyListener(this);t2.addKeyListener(this);t3.addKeyListener(this);
+	c1.addItemListener(this);c2.addItemListener(this);c3.addItemListener(this);ls1.addItemListener(this);
+	b1.addActionListener(this);b2.addActionListener(this);
+	}
+	public void paint(Graphics g)
+	{
+
+		g.drawImage(img,300,400,this);
+	//	g.drawLine(100,200,400,200);
+	//	g.drawRect(100,200,400,300);
+	//	g.drawOval(100,300,50,50);
+	//	//setBackground(Color.RED);
+	//	g.fillRect(100,50,400,300);
+	//	g.fillOval(400,300,50,50);
+		
+	}
+
+	public void actionPerformed(ActionEvent ae)
+	{
+		if(ae.getSource()==b1)
+		{
+		s1=t1.getText();
+		s2=String.valueOf(t3.getText());
+		}
+		if(c1.getState()==true)
+		s3=c1.getLabel();
+		
+		if(c2.getState()==true)
+		s4=c2.getLabel();
+		
+		if(c3.getState()==true)
+		s5=c3.getLabel();
+		s6=s3+" "+s4+" "+s5;
+		
+		ls1.add("NAME:"+s1);
+		ls1.add("AGE: "+s2);
+		ls1.add("Courses: "+s6);
+		
+		if(ae.getSource()==b2)
+		{
+			t1.setText(" ");
+			t2.setText(" ");
+			t3.setText(" ");t2.setEchoChar(' ');
+			ls1.removeAll();
+			c1.setState(false);c2.setState(false);c3.setState(false);
+		}	
+		
+	}
+	public void itemStateChanged(ItemEvent ie)
+	{
+		if(c3.getState()==true)
+		{
+		c1.setState(false);c2.setState(false);
+		}
+	}
+	public void keyPressed(KeyEvent ke)
+		{
+		}
+	public void keyReleased(KeyEvent ke)
+	{	
+		if(ke.getSource()==t1)
+		if(!((ke.getKeyChar()>='A') && (ke.getKeyChar()<='Z') || (ke.getKeyChar()==' ')))
+		t1.setText(" ");
+		if(!((ke.getKeyChar()>='0') && (ke.getKeyChar()<='9')))
+		t3.setText(" ");	
+	}
+	public void keyTyped(KeyEvent ke)
+	{	
+		if(ke.getSource()==t1)
+		if(!((ke.getKeyChar()>='A') && (ke.getKeyChar()<='Z') || (ke.getKeyChar()==' ')))
+		t1.setText(" ");
+		if(!((ke.getKeyChar()>='0') && (ke.getKeyChar()<='9')))
+		t3.setText(" ");
+			
+	}
+}
+	

@@ -1,0 +1,40 @@
+package nk;
+import java.util.*;
+public class TryCatch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s=new Scanner(System.in);
+		try
+		{
+		System.out.print("Enter no1: ");
+		int n1=s.nextInt();
+		System.out.print("Enter no2: ");
+		int n2=s.nextInt();
+		int n3=n1/n2;
+		System.out.println("Answer: "+n3);
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("ERROR NAME: "+e);
+			
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Type Only Numbers");
+			System.exit(0);
+		}
+		finally
+		{
+			System.out.println("Thank You: Programme Finished");
+			
+		}
+	}
+		
+	
+}		
+		
+
+	
+
+

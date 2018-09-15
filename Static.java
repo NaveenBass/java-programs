@@ -1,4 +1,4 @@
-
+package naveen;
 class Abc
 {
 	static int a=10; //static variable declaration
@@ -21,7 +21,7 @@ public class Static {
 		$.display();
 		$.display();
 		$.display();
-	
+		
 	}
 
 }

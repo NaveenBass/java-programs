@@ -1,0 +1,44 @@
+package nk;
+class Q
+{	protected int a=10,b=20,c;
+	public void display()
+	{
+	
+		c=a+b;
+		
+		System.out.println("Base Class A"+c);
+	}
+	
+}
+class B extends Q
+{
+	public void display()
+	{
+		c=a-b;
+		System.out.println("Class B"+c);
+		super.display();
+	}
+}
+class C extends B
+{
+	public void display()
+	{
+		c=a*b;
+		System.out.println("Class C"+c);
+		super.display();
+		
+	}
+}
+public class InHeritance {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		C ob=new C();
+		ob.display();
+		System.out.println(ob.a);
+		System.out.println(ob.b);
+		System.out.println(ob.c);
+	}
+
+}

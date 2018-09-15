@@ -1,3 +1,4 @@
+package naveen;
 //<applet code="AppletAE.class" width="800" height="800"></applet>
 import java.awt.*;
 import java.awt.event.*;
