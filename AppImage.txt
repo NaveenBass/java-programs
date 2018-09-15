@@ -1,0 +1,29 @@
+
+//<applet code="AppImage.class" width="800" height="800"></applet>
+import java.io.*;
+import javax.imageio.*;
+import java.awt.Image.*;
+import java.applet.*;
+import java.awt.*;
+
+public class AppImage extends Applet
+{
+	File f1;
+	Image img;
+	public void init(){
+		setLayout(null);
+	f1=new File("autoo.jpg.png");//png a photo format autoo.jpg is name of the file		
+	try
+	{
+	img=ImageIO.read(f1);
+	}
+	catch(Exception e)
+		{
+		}
+	}
+	public void paint(Graphics g)
+	{
+	g.drawImage(img,30,40,this);
+	}
+}
+	

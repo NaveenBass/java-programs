@@ -1,0 +1,228 @@
+package com.niit;
+import java.awt.event.*;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.*;
+public class InsertData implements ActionListener{
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	JButton btnInsert,buttonSearch,buttonUpdate;
+	Connection con;
+	Statement st;
+	ResultSet rs;
+	String  name;
+	int no,sal,ans;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InsertData window = new InsertData();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public InsertData() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 761, 492);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblEmployeeDatabase = new JLabel("Employee Database");
+		lblEmployeeDatabase.setBounds(314, 53, 141, 14);
+		frame.getContentPane().add(lblEmployeeDatabase);
+		
+		textField = new JTextField();
+		textField.setBounds(357, 111, 86, 20);
+		frame.getContentPane().add(textField);
+		//textField.enable(false);
+		//textField.setVisible(false);
+		//textField.setEnabled(false);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(357, 175, 86, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(357, 233, 86, 20);
+		frame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		btnInsert = new JButton("Insert");
+		btnInsert.addActionListener(this);
+		btnInsert.setBounds(312, 332, 89, 23);
+		frame.getContentPane().add(btnInsert);
+		
+		JLabel lblEnterRollNo = new JLabel("Enter Emp No.");
+		lblEnterRollNo.setBounds(238, 114, 79, 14);
+		frame.getContentPane().add(lblEnterRollNo);
+		
+		JLabel lblEnterEmpName = new JLabel("Enter Emp Name");
+		lblEnterEmpName.setBounds(238, 178, 89, 14);
+		frame.getContentPane().add(lblEnterEmpName);
+		
+		JLabel lblNewLabel = new JLabel("Enter Salary");
+		lblNewLabel.setBounds(238, 236, 79, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		buttonSearch = new JButton("SEARCH");
+		buttonSearch.addActionListener(this);
+			
+		buttonSearch.setBounds(510, 298, 89, 23);
+		frame.getContentPane().add(buttonSearch);
+		
+		buttonUpdate = new JButton("UPDATE");
+		buttonUpdate.addActionListener(this);
+		buttonUpdate.setBounds(510, 332, 89, 23);
+		buttonUpdate.setEnabled(false);
+		frame.getContentPane().add(buttonUpdate);
+	}
+	public void actionPerformed(ActionEvent ae)
+	{
+		
+		try
+		{
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			System.out.println("driver accepted");
+			
+			con=DriverManager.getConnection("jdbc:ucanaccess://D:/JAVAPGMS/DataBase_Ucanaccess/Emp.accdb","","");
+			st=con.createStatement();
+			
+		}
+		
+			/*ResultSet rs=st.executeQuery("SELECT * FROM salary");
+			while(rs.next())
+			{
+				System.out.print("  "+rs.getInt("eno"));
+				System.out.print("  "+rs.getString("ename"));
+				System.out.println("  "+rs.getInt("esal"));
+			}
+			rs.close();*/
+			//st.close();
+			//con.close();
+		//}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("driver problem");
+		}
+		catch(SQLException e)
+		{
+			System.out.println("sql query related error");
+		}
+		if(ae.getSource()==btnInsert)
+		{
+			no=Integer.parseInt(textField.getText());
+			name=(textField_1.getText());
+			sal=Integer.parseInt(textField_2.getText());
+			try
+			{
+			ans=st.executeUpdate("INSERT INTO salary (eno,ename,esal) VALUES("+no+",'"+name+"',"+sal+")");
+			if(ans>=1)
+			{
+				JOptionPane.showMessageDialog(null, "Successfully inserted");
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Failed to Insert");
+			st.close();
+			con.close();
+			}
+			catch(SQLException e)
+			{
+				System.out.println("Error"+e.toString());
+			}
+			
+		}
+		if(ae.getSource()==buttonSearch)
+		{
+			try
+			{
+				no=Integer.parseInt(JOptionPane.showInputDialog(null,"ENter roll no. to searh"));	
+				rs=st.executeQuery("SELECT * FROM salary where eno="+no);
+				rs.next();
+				ans=rs.getRow();
+				
+				if(ans>=1)
+				{
+				JOptionPane.showMessageDialog(null, "Found in Database :"+no+" Name:"+rs.getString("ename").substring(0, 3)+"....");
+				textField.setEnabled(false);
+				buttonUpdate.setEnabled(true);
+				textField.setText(""+no);
+				textField_1.setText(rs.getString("ename"));
+				textField_2.setText(""+rs.getInt("esal"));
+				
+				}
+			else
+				JOptionPane.showMessageDialog(null, "Not Found in database:"+no);
+			rs.close();
+			st.close();
+			con.close();
+			}
+			catch(SQLException e)
+			{
+				System.out.println("Error"+e.toString());
+			}
+		}
+		if(ae.getSource()==buttonUpdate)
+		{
+			no=Integer.parseInt(textField.getText());
+			name=(textField_1.getText());
+			sal=Integer.parseInt(textField_2.getText());
+			try
+			{
+			ans=st.executeUpdate("UPDATE salary SET ename='"+name+"',esal="+sal+" where eno="+no);
+			if(ans>=1)
+			{
+				JOptionPane.showMessageDialog(null, "Successfully Updated");
+				clearTextBox();
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Updated Failed");
+			
+			buttonUpdate.setEnabled(false);
+			st.close();
+			con.close();
+			}
+			catch(SQLException e)
+			{
+				System.out.println("Error"+e.toString());
+			}
+			
+		}
+	}
+		
+		void clearTextBox()
+		{
+			textField.setText("");
+			textField_1.setText("");
+			textField_2.setText("");
+		}
+}

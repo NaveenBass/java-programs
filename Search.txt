@@ -1,0 +1,36 @@
+import java.util.*;
+class Search
+{
+	public static void main(String args[])
+	{
+	Scanner s=new Scanner(System.in);
+	int pos=0,e,i;
+	boolean flag=false;
+	System.out.println("Enter Array Size: ");
+	int size=s.nextInt();
+	int a[]=new int[size];
+	System.out.println("Enter array values: ");
+	for(i=0;i<size;i++)
+	{
+	a[i]=s.nextInt();
+	}
+	System.out.println("Search Do You Want!: ");
+	e=s.nextInt();
+	for(i=0;i<size;i++)
+	{
+		if(e==a[i])
+		{
+		pos=i;
+		flag=true;
+		}
+	}
+	if(flag==true)
+	{
+	System.out.println(e+" is postion is "+pos);
+	}
+	else
+	{
+	System.out.println(e+"is not found");
+	}
+	}
+}

@@ -1,0 +1,30 @@
+import java.util.*; //for Scanner
+import java.io.*;  //for IO & DataInputStream scan=new DataInputStream(System.in)
+public class  Throw
+{
+
+	public static void main(String[] args)throws IOException //add IO(input&output Error Finder)(ex:throws IOException)
+	{
+		try
+		{
+		Scanner s=new Scanner(System.in);
+		System.out.print("Enter no1: ");
+		int n1=s.nextInt();
+		System.out.print("Enter no2: ");
+		int n2=s.nextInt();
+		int n3=n1/n2;
+		System.out.println("Answer: "+n3);
+
+            if(n1<18)
+		throw new Exception("enter age>17");
+            else
+		System.out.println("Accepted");
+		}	
+	catch(Exception e)
+	{
+		System.out.println(e.toString());
+	}	
+
+}
+		
+}	

@@ -1,0 +1,16 @@
+class Sums
+{
+	public static void main(String[] args)
+	{
+	String t1,t2,t3;
+	t1="22";
+	t2="45";
+	t3=t1+t2;
+	System.out.println(" "+t3);
+	int t4=Integer.parseInt(t1)+Integer.parseInt(t2);//integer converted into String
+	System.out.println(" "+t4);
+	String t5=String.valueOf(t1);//change String into integer
+	System.out.println(" "+(t5+55));
+
+	}
+}

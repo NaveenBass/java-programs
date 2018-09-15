@@ -1,0 +1,37 @@
+import java.util.*;
+class Ascend
+{
+	public static void main(String[] args)
+{
+	Scanner s=new Scanner(System.in);
+	int i,j,temp;
+	System.out.println("Enter Array size: ");
+	int size=s.nextInt();
+	int a[]=new int[size];
+	System.out.println("enter array values");
+	for(i=0;i<size;i++)
+	{
+		a[i]=s.nextInt();
+	}
+	for(i=0;i<size;i++)
+	{
+		for(j=i+1;j<size;j++)
+		{
+		
+			if(a[i]>a[j])
+			{
+			
+			a[i]=a[j];
+			a[j]=temp;
+			temp=a[i];
+			}
+		}
+	}
+	System.out.println("Orders:");
+	for(i=0;i<size;i++)
+	{
+	System.out.println(" "+a[i]);
+	}
+	
+	}
+}

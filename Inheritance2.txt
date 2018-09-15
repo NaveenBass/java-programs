@@ -1,0 +1,40 @@
+
+import java.util.*;
+class My
+{
+	 int a,b,c;
+	void Addition(int a,int b) {
+		c=a+b;
+		System.out.println("Answer in class my: "+c);
+	}
+}
+class You extends My
+{
+	void Subtraction(int a,int b) {
+		c=a-b;
+		System.out.println("Answer in class You: "+c);
+	}
+}
+class We extends You
+{
+	void multiple(int a,int b) {
+		c=a*b;
+		System.out.println("Answer in class We: "+c);
+		
+	}
+}
+class InH3
+{
+	public static void main(String args[])
+	{
+		int a=0,b=0;
+		Scanner scan=new Scanner(System.in);
+		We ob=new We();
+	System.out.println("Enter a & b: ");
+		a=scan.nextInt();
+		b=scan.nextInt();
+		ob.multiple(a,b);
+		ob.Subtraction(a,b);
+		ob.Addition(a,b);
+	}
+}

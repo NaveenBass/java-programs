@@ -1,0 +1,28 @@
+
+class Refer
+{
+	public static void main(String args[])
+	{
+	String text="  naveen kumar    ";
+	int len=text.length();
+	System.out.println(text.toUpperCase());//change all letter capse
+	System.out.println(""+len);//length of the letter
+	System.out.println(text.charAt(5));//what is the 5th letter
+	System.out.println(text.indexOf('v'));//findout letter position
+	System.out.println(text.lastIndexOf('n'));//find out last position of 'n'
+	System.out.println(text.trim());//remove unwanted space first&last
+	System.out.println(text.substring(3));//print only 3rd position to end of the word 
+	System.out.println(text.substring(2,6));//print only 2 to 6 th position of the word
+	System.out.println(text.startsWith("na"));//to check true or false
+	System.out.println(text.endsWith("  "));//to check true or false
+	System.out.println(text.concat("singam"));//add [apend] letters
+	System.out.println(text.replaceAll("n","replace"));//replace letters or words
+	String t1="abcd",t2="ABCD";
+	System.out.println(t1.equals(t2));//to check true or false
+	System.out.println(t1.equals(t2.toLowerCase()));//to check true or false
+	System.out.println(t1.hashCode('a'));
+
+
+	}
+}
+

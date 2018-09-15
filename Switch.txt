@@ -1,0 +1,27 @@
+import java.util.*;
+class Switch
+{
+	public static void main(String[] args)
+	{
+	Scanner s=new Scanner(System.in);
+	System.out.println("Enter your choice");
+	int ch=s.nextInt();
+	System.out.println("Enter two Values");
+	int n1=s.nextInt();
+	int n2=s.nextInt();
+	switch(ch)
+	{
+	case 1:
+	System.out.println(+n1+n2);
+		break;
+	case 2:
+	System.out.println(-n1-n2);
+		break;
+	case 3:
+	System.out.println(+(n1%n2));
+		break;
+	default:
+	System.out.println("You Enter Wrong Choic");
+	}
+	}
+}

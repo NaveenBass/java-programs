@@ -1,0 +1,55 @@
+import java.util.*;
+class MarkList
+{
+	public static void main(String args[])
+	{
+	Scanner scan=new Scanner(System.in);
+	System.out.print("Enter your name: ");
+	String name=scan.next();
+	System.out.println("Enter your five marks:");
+	int t1=scan.nextInt();
+	int t2=scan.nextInt();
+	int t3=scan.nextInt();
+	int t4=scan.nextInt();
+	int t5=scan.nextInt();
+ 	int tot=t1+t2+t3+t4+t5;
+	int avg=tot/5;
+	System.out.println("your marks: "+"  "+t1+t2+t3+t4+t5+"  "+"\nyour total is: "+tot);
+	System.out.println("average is: "+avg);
+	String res="PASS";
+	int flag=1;
+	if(t1>34 && t2>34 && t3>34 && t4>34 && t5>34)
+	{
+	System.out.println("Result:PASS");
+	 flag=1;
+	}
+	else
+	{
+	System.out.println("Result:FAIL");
+	}
+	if(flag==1)
+{
+	if(avg>80)
+	{
+	System.out.println("Grade:Distinction");
+	}
+	else if(avg>60)
+	{
+	System.out.println("Grade:First Class");	
+	}
+	else if(avg>45)
+	{
+	System.out.println("Grade:Satisfy");
+	}
+	else if(avg>34)
+	{
+	System.out.println("Grade:Poor");
+	}
+}
+
+
+
+	}
+}
+	
+	
